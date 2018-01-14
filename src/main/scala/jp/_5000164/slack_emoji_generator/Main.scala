@@ -5,6 +5,7 @@ import javafx.scene.Scene
 import javafx.scene.canvas.Canvas
 import javafx.scene.layout.StackPane
 import javafx.scene.paint.Color
+import javafx.scene.text.Font
 import javafx.stage.Stage
 
 object Main extends App {
@@ -15,8 +16,9 @@ class Main extends Application {
   override def start(primaryStage: Stage): Unit = {
     val c = new Canvas(300, 300)
     val gc = c.getGraphicsContext2D
-    gc.setFill(Color.GRAY)
-    gc.fillRect(0, 0, 300, 300)
+    gc.setStroke(Color.GRAY)
+    gc.setFont(Font.font("Hiragino Sans", 20))
+    gc.fillText("テキスト", 50, 50)
     val root = new StackPane()
     root.getChildren.add(c)
     val scene = new Scene(root, 350, 350)

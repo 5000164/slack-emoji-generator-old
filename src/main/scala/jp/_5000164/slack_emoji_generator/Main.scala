@@ -16,7 +16,7 @@ class Main extends Application {
   override def start(primaryStage: Stage): Unit = {
     val c = new Canvas(300, 300)
     val gc = c.getGraphicsContext2D
-    gc.setStroke(Color.GRAY)
+    gc.setFill(Color.GRAY)
     gc.setFont(Font.font("Hiragino Sans", 20))
     gc.fillText("テキスト", 50, 50)
     val root = new StackPane()

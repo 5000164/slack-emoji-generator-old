@@ -2,8 +2,10 @@ package jp._5000164.slack_emoji_generator
 
 import javafx.application.Application
 import javafx.embed.swing.SwingFXUtils
+import javafx.event.{ActionEvent, EventHandler}
 import javafx.scene.Scene
 import javafx.scene.canvas.Canvas
+import javafx.scene.control.Button
 import javafx.scene.image.WritableImage
 import javafx.scene.layout.StackPane
 import javafx.scene.paint.Color
@@ -23,16 +25,24 @@ class Main extends Application {
     gc.setFont(Font.font("Hiragino Sans", 20))
     gc.fillText("テキスト", 50, 50)
 
-    val fc = new FileChooser
-    val f = fc.showSaveDialog(primaryStage)
+    val b = new Button()
+    b.setText("保存")
 
-    val wi = new WritableImage(300, 300)
-    c.snapshot(null, wi)
-    val ri = SwingFXUtils.fromFXImage(wi, null)
-    ImageIO.write(ri, "png", f)
+    b.setOnAction(new EventHandler[ActionEvent] {
+      override def handle(event: ActionEvent): Unit = {
+        val fc = new FileChooser
+        val f = fc.showSaveDialog(primaryStage)
+
+        val wi = new WritableImage(300, 300)
+        c.snapshot(null, wi)
+        val ri = SwingFXUtils.fromFXImage(wi, null)
+        ImageIO.write(ri, "png", f)
+      }
+    })
 
     val root = new StackPane()
     root.getChildren.add(c)
+    root.getChildren.add(b)
     val scene = new Scene(root, 350, 350)
     primaryStage.setTitle("Slack Emoji Generator")
     primaryStage.setScene(scene)

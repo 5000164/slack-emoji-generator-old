@@ -1,6 +1,5 @@
 package jp._5000164.slack_emoji_generator
 
-import java.io.File
 import javafx.application.Application
 import javafx.embed.swing.SwingFXUtils
 import javafx.scene.Scene
@@ -9,7 +8,7 @@ import javafx.scene.image.WritableImage
 import javafx.scene.layout.StackPane
 import javafx.scene.paint.Color
 import javafx.scene.text.Font
-import javafx.stage.Stage
+import javafx.stage.{FileChooser, Stage}
 import javax.imageio.ImageIO
 
 object Main extends App {
@@ -24,10 +23,12 @@ class Main extends Application {
     gc.setFont(Font.font("Hiragino Sans", 20))
     gc.fillText("テキスト", 50, 50)
 
+    val fc = new FileChooser
+    val f = fc.showSaveDialog(primaryStage)
+
     val wi = new WritableImage(300, 300)
     c.snapshot(null, wi)
     val ri = SwingFXUtils.fromFXImage(wi, null)
-    val f = new File("test.png")
     ImageIO.write(ri, "png", f)
 
     val root = new StackPane()

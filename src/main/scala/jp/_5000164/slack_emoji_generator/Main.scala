@@ -34,7 +34,7 @@ class Main extends Application {
     val root = new StackPane()
     root.getChildren.add(c)
     val scene = new Scene(root, 350, 350)
-    primaryStage.setTitle("test")
+    primaryStage.setTitle("Slack Emoji Generator")
     primaryStage.setScene(scene)
     primaryStage.show()
   }

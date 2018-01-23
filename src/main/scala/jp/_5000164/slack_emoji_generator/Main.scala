@@ -5,7 +5,7 @@ import javafx.embed.swing.SwingFXUtils
 import javafx.event.{ActionEvent, EventHandler}
 import javafx.scene.Scene
 import javafx.scene.canvas.Canvas
-import javafx.scene.control.{Button, TextField}
+import javafx.scene.control.{Button, TextArea}
 import javafx.scene.image.WritableImage
 import javafx.scene.layout.{HBox, VBox}
 import javafx.scene.paint.Color
@@ -40,7 +40,7 @@ class Main extends Application {
       }
     })
 
-    val t = new TextField("test")
+    val t = new TextArea("test")
 
     val gb = new Button()
     gb.setText("生成")

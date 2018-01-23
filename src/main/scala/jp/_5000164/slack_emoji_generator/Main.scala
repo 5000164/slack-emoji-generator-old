@@ -5,9 +5,9 @@ import javafx.embed.swing.SwingFXUtils
 import javafx.event.{ActionEvent, EventHandler}
 import javafx.scene.Scene
 import javafx.scene.canvas.Canvas
-import javafx.scene.control.Button
+import javafx.scene.control.{Button, TextField}
 import javafx.scene.image.WritableImage
-import javafx.scene.layout.StackPane
+import javafx.scene.layout.{HBox, VBox}
 import javafx.scene.paint.Color
 import javafx.scene.text.Font
 import javafx.stage.{FileChooser, Stage}
@@ -40,10 +40,27 @@ class Main extends Application {
       }
     })
 
-    val root = new StackPane()
-    root.getChildren.add(c)
-    root.getChildren.add(b)
-    val scene = new Scene(root, 350, 350)
+    val t = new TextField("test")
+
+    val gb = new Button()
+    gb.setText("生成")
+
+    gb.setOnAction(new EventHandler[ActionEvent] {
+      override def handle(event: ActionEvent): Unit = {
+        gc.clearRect(0, 0, c.getWidth, c.getHeight)
+        gc.fillText(t.getText, 50, 50)
+      }
+    })
+
+    val l1 = new HBox()
+    l1.getChildren.addAll(c, t, gb)
+
+    val l2 = new HBox()
+    l2.getChildren.add(b)
+
+    val root = new VBox()
+    root.getChildren.addAll(l1, l2)
+    val scene = new Scene(root, 600, 300)
     primaryStage.setTitle("Slack Emoji Generator")
     primaryStage.setScene(scene)
     primaryStage.show()

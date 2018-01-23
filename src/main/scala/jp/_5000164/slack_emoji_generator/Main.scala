@@ -40,12 +40,14 @@ class Main extends Application {
         fc.setInitialFileName(s"${t.getText.lines.mkString}.png")
         val f = fc.showSaveDialog(primaryStage)
 
-        val wi = new WritableImage(128, 128)
-        val sp = new SnapshotParameters
-        sp.setFill(Color.TRANSPARENT)
-        c.snapshot(sp, wi)
-        val ri = SwingFXUtils.fromFXImage(wi, null)
-        ImageIO.write(ri, "png", f)
+        if (f != null) {
+          val wi = new WritableImage(128, 128)
+          val sp = new SnapshotParameters
+          sp.setFill(Color.TRANSPARENT)
+          c.snapshot(sp, wi)
+          val ri = SwingFXUtils.fromFXImage(wi, null)
+          ImageIO.write(ri, "png", f)
+        }
       }
     })
 

@@ -19,7 +19,7 @@ object Main extends App {
 
 class Main extends Application {
   override def start(primaryStage: Stage): Unit = {
-    val c = new Canvas(300, 300)
+    val c = new Canvas(128, 128)
     val gc = c.getGraphicsContext2D
     gc.setFill(Color.GRAY)
     gc.setFont(Font.font("Hiragino Sans", 20))
@@ -33,7 +33,7 @@ class Main extends Application {
         val fc = new FileChooser
         val f = fc.showSaveDialog(primaryStage)
 
-        val wi = new WritableImage(300, 300)
+        val wi = new WritableImage(128, 128)
         c.snapshot(null, wi)
         val ri = SwingFXUtils.fromFXImage(wi, null)
         ImageIO.write(ri, "png", f)

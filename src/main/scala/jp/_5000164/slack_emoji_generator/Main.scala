@@ -9,7 +9,7 @@ import javafx.scene.control.{Button, TextArea}
 import javafx.scene.image.WritableImage
 import javafx.scene.layout.{HBox, VBox}
 import javafx.scene.paint.Color
-import javafx.scene.text.Font
+import javafx.scene.text.{Font, FontSmoothingType}
 import javafx.stage.{FileChooser, Stage}
 import javax.imageio.ImageIO
 
@@ -23,6 +23,7 @@ class Main extends Application {
     val gc = c.getGraphicsContext2D
     gc.setFill(Color.GRAY)
     gc.setFont(Font.font("Hiragino Sans", 20))
+    gc.setFontSmoothingType(FontSmoothingType.LCD)
     gc.fillText("テキスト", 50, 50)
 
     val b = new Button()

@@ -3,13 +3,13 @@ package jp._5000164.slack_emoji_generator
 import javafx.application.Application
 import javafx.embed.swing.SwingFXUtils
 import javafx.event.{ActionEvent, EventHandler}
-import javafx.scene.Scene
 import javafx.scene.canvas.Canvas
 import javafx.scene.control.{Button, TextArea}
 import javafx.scene.image.WritableImage
 import javafx.scene.layout.{HBox, VBox}
 import javafx.scene.paint.Color
 import javafx.scene.text.{Font, FontSmoothingType}
+import javafx.scene.{Scene, SnapshotParameters}
 import javafx.stage.{FileChooser, Stage}
 import javax.imageio.ImageIO
 
@@ -35,7 +35,9 @@ class Main extends Application {
         val f = fc.showSaveDialog(primaryStage)
 
         val wi = new WritableImage(128, 128)
-        c.snapshot(null, wi)
+        val sp = new SnapshotParameters
+        sp.setFill(Color.TRANSPARENT)
+        c.snapshot(sp, wi)
         val ri = SwingFXUtils.fromFXImage(wi, null)
         ImageIO.write(ri, "png", f)
       }

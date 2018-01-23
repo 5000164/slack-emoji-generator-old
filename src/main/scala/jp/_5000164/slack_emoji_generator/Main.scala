@@ -29,9 +29,15 @@ class Main extends Application {
     val b = new Button()
     b.setText("保存")
 
+    val t = new TextArea("test")
+
+    val gb = new Button()
+    gb.setText("生成")
+
     b.setOnAction(new EventHandler[ActionEvent] {
       override def handle(event: ActionEvent): Unit = {
         val fc = new FileChooser
+        fc.setInitialFileName(s"${t.getText.lines.mkString}.png")
         val f = fc.showSaveDialog(primaryStage)
 
         val wi = new WritableImage(128, 128)
@@ -42,11 +48,6 @@ class Main extends Application {
         ImageIO.write(ri, "png", f)
       }
     })
-
-    val t = new TextArea("test")
-
-    val gb = new Button()
-    gb.setText("生成")
 
     gb.setOnAction(new EventHandler[ActionEvent] {
       override def handle(event: ActionEvent): Unit = {

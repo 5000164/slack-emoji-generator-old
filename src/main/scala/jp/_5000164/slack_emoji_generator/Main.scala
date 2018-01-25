@@ -14,6 +14,8 @@ import javafx.scene.{Scene, SnapshotParameters}
 import javafx.stage.{FileChooser, Stage}
 import javax.imageio.ImageIO
 
+import scala.util.Random
+
 object Main extends App {
   Application.launch(classOf[Main], args: _*)
 }
@@ -22,7 +24,29 @@ class Main extends Application {
   override def start(primaryStage: Stage): Unit = {
     val c = new Canvas(128, 128)
     val gc = c.getGraphicsContext2D
-    gc.setFill(Color.web("0xF44336"))
+
+    val colorList = Map(
+      "Red" -> "F44336",
+      "Pink" -> "E91E63",
+      "Purple" -> "9C27B0",
+      "Deep Purple" -> "673AB7",
+      "Indigo" -> "3F51B5",
+      "Blue" -> "2196F3",
+      "Light Blue" -> "03A9F4",
+      "Cyan" -> "00BCD4",
+      "Teal" -> "009688",
+      "Green" -> "4CAF50",
+      "Light Green" -> "8BC34A",
+      "Lime" -> "CDDC39",
+      "Yellow" -> "FFEB3B",
+      "Amber" -> "FFC107",
+      "Orange" -> "FF9800",
+      "Deep Orange" -> "FF5722",
+      "Brown" -> "795548",
+      "Grey" -> "9E9E9E",
+      "Blue Grey" -> "607D8B"
+    )
+
     gc.setFont(Font.font("Hiragino Sans", 64))
     gc.setFontSmoothingType(FontSmoothingType.LCD)
     gc.setTextAlign(TextAlignment.CENTER)
@@ -63,6 +87,9 @@ class Main extends Application {
         }
 
         val content = getContent(List(), t.getText.take(4).toList)
+
+        val color = Random.shuffle(colorList.values).head
+        gc.setFill(Color.web(s"0x$color"))
 
         gc.fillText(content.head.getOrElse("").toString, 32, 32)
         gc.fillText(content(1).getOrElse("").toString, 96, 32)

@@ -27,9 +27,6 @@ class Main extends Application {
     gc.setFontSmoothingType(FontSmoothingType.LCD)
     gc.setTextAlign(TextAlignment.CENTER)
     gc.setTextBaseline(VPos.CENTER)
-    gc.fillText("つ", 32, 32)
-    gc.fillText("よ", 96, 32)
-    gc.fillText("い", 32, 96)
 
     val b = new Button()
     b.setText("保存")
@@ -59,7 +56,18 @@ class Main extends Application {
     gb.setOnAction(new EventHandler[ActionEvent] {
       override def handle(event: ActionEvent): Unit = {
         gc.clearRect(0, 0, c.getWidth, c.getHeight)
-        gc.fillText(t.getText, 50, 50)
+
+        def getContent(content: List[Option[Char]], remains: List[Char]): List[Option[Char]] = remains match {
+          case head :: tail => getContent(Some(head) :: content, tail)
+          case Nil => content.reverse
+        }
+
+        val content = getContent(List(), t.getText.take(4).toList)
+
+        gc.fillText(content.head.getOrElse("").toString, 32, 32)
+        gc.fillText(content(1).getOrElse("").toString, 96, 32)
+        gc.fillText(content(2).getOrElse("").toString, 32, 96)
+        gc.fillText(content(3).getOrElse("").toString, 96, 96)
       }
     })
 

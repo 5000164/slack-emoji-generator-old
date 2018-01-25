@@ -3,12 +3,13 @@ package jp._5000164.slack_emoji_generator
 import javafx.application.Application
 import javafx.embed.swing.SwingFXUtils
 import javafx.event.{ActionEvent, EventHandler}
+import javafx.geometry.VPos
 import javafx.scene.canvas.Canvas
 import javafx.scene.control.{Button, TextArea}
 import javafx.scene.image.WritableImage
 import javafx.scene.layout.{HBox, VBox}
 import javafx.scene.paint.Color
-import javafx.scene.text.{Font, FontSmoothingType}
+import javafx.scene.text.{Font, FontSmoothingType, TextAlignment}
 import javafx.scene.{Scene, SnapshotParameters}
 import javafx.stage.{FileChooser, Stage}
 import javax.imageio.ImageIO
@@ -21,10 +22,14 @@ class Main extends Application {
   override def start(primaryStage: Stage): Unit = {
     val c = new Canvas(128, 128)
     val gc = c.getGraphicsContext2D
-    gc.setFill(Color.GRAY)
-    gc.setFont(Font.font("Hiragino Sans", 20))
+    gc.setFill(Color.web("0xF44336"))
+    gc.setFont(Font.font("Hiragino Sans", 64))
     gc.setFontSmoothingType(FontSmoothingType.LCD)
-    gc.fillText("テキスト", 50, 50)
+    gc.setTextAlign(TextAlignment.CENTER)
+    gc.setTextBaseline(VPos.CENTER)
+    gc.fillText("つ", 32, 32)
+    gc.fillText("よ", 96, 32)
+    gc.fillText("い", 32, 96)
 
     val b = new Button()
     b.setText("保存")
